@@ -27,8 +27,11 @@ static int	*D,*R;		/* maps between depth (stepnr) and ldepth (msc-step) */
 static short	*M;		/* x location of each box at index y */
 static short	*T;		/* y index of match for each box at index y */
 static char	**L;		/* text labels */
-static int	ProcLine[256];	/* active processes */
-static int	UsedLine[256];	/* process line has at least one entry */
+
+#define MSC_MAXPID	256             /* How many processes to display */
+static int	ProcLine[MSC_MAXPID];	/* active processes */
+static int	UsedLine[MSC_MAXPID];	/* process line has at least one entry */
+
 static int	ldepth = 1;
 static int	maxx, TotSteps = 2*4096; /* max nr of steps for simulation output */
 static float	Scaler = (float) 1.0;
@@ -89,7 +92,7 @@ colbox(int ix, int iy, int w, int h_unused, char *color)
 {	int x = ix*WW;
 	int y = iy*HH;
 
-	if (ix < 0 || ix > 255)
+	if (ix < 0 || ix > MSC_MAXPID-1)
 	{	fprintf(stderr, "saw ix=%d\n", ix);
 		fatal("msc_tcl: unexpected\n", (char *) 0);
 	}
