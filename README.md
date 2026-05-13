@@ -1,4 +1,4 @@
-# Spi
+# Spin16
 
 A fork of [spin](https://github.com/nimble-code/Spin) with higher process & channel limits
 
