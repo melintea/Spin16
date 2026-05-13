@@ -5,7 +5,7 @@
 # Tool documentation is available at http://spinroot.com
 
 CC?=gcc
-CFLAGS?=-O2 -DNXT -Wall -pedantic
+CFLAGS?=-O2 -DNXT -Wall -pedantic -DSPIN16
 	# on some systems add: -I/usr/include
 	# on a PC:    make CFLAGS="-O2 -DNXT -DPC"
 	# on Solaris: make CFLAGS="-O2 -DNXT -DSOLARIS"
@@ -49,13 +49,13 @@ spin.o:	makefile spin.y
 	rm -f y?tab.c
 	mv y?tab.o spin.o
 
-$(SPIN_OS): makefile spin.h spin.o
+$(SPIN_OS): makefile limits.h spin.h spin.o
 
-$(TL_OS): makefile tl.h spin.o
+$(TL_OS): makefile limits.h tl.h spin.o
 
-main.o pangen2.o msc_tcl.o: version.h
-pangen1.o: pangen1.h pangen3.h pangen6.h
-pangen2.o: pangen2.h pangen4.h pangen5.h pangen7.h
+main.o pangen2.o msc_tcl.o: limits.h version.h
+pangen1.o: limits.h pangen1.h pangen3.h pangen6.h
+pangen2.o: limits.h pangen2.h pangen4.h pangen5.h pangen7.h
 
 clean:
 	rm -f spin *.o y?tab.[ch] y.output y.debug

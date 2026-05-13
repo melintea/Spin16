@@ -96,7 +96,7 @@ typedef struct Mtypes_t {
 } Mtypes_t;
 
 typedef struct Queue {
-	short	qid;		/* runtime q index */
+	SPIN_QID_T qid;		/* runtime q index */
 	int	qlen;		/* nr messages stored */
 	int	nslots, nflds;	/* capacity, flds/slot */
 	int	setat;		/* last depth value changed */

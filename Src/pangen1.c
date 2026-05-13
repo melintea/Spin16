@@ -1363,7 +1363,7 @@ qlen_type(int qmax)
 
 void
 genaddqueue(void)
-{	char buf0[256];
+{	char buf0[512];
 	int j, qmax = 0;
 	Queue *q;
 
@@ -1596,8 +1596,8 @@ genaddqueue(void)
 		fprintf(fd_th, ", int");
 	fprintf(fd_th, ", int);\n\n");
 
-	fprintf(fd_th, "#define Addproc(x,y)	addproc(256, y, x");
-	/* 256 is param outside the range of valid pids */
+	fprintf(fd_th, "#define Addproc(x,y)	addproc(" TOSTR(MAX_SPIN_PID) "+1, y, x");
+	/* MAX_SPIN_PID+1 is param outside the range of valid pids */
 	for (j = 0; j < Npars; j++)
 		fprintf(fd_th, ", 0");
 	fprintf(fd_th, ")\n");

@@ -12,7 +12,7 @@
 #include "y.tab.h"
 
 #ifndef MAXQ
-#define MAXQ	2500		/* default max # queues  */
+#define MAXQ	MAX_SPIN_QID		/* default max # queues  */
 #endif
 
 extern RunList	*X_lst;
@@ -66,7 +66,7 @@ qmake(Symbol *s)
 		Fname  = s->ini->fn;
 		fatal("too many queues (%s)", s->name);
 	}
-	if (analyze && nrqs >= 255)
+	if (analyze && nrqs >= MAX_SPIN_QID)
 	{	fatal("too many channel types", (char *)0);
 	}
 
@@ -74,7 +74,7 @@ qmake(Symbol *s)
 		return eval(s->ini);
 
 	q = (Queue *) emalloc(sizeof(Queue));
-	q->qid    = (short) ++nrqs;
+	q->qid    = (SPIN_QID_T) ++nrqs;
 	q->nslots = s->ini->val;
 	q->nflds  = cnt_mpars(s->ini->rgt);
 	q->setat  = depth;
@@ -606,7 +606,7 @@ docolumns(Lextok *n, char *tr, int v, int j, Queue *q)
 		firstrow = 0;
 	}
 	if (j == 0)
-	{	printf("%3d", q->qid);
+	{	printf("%6d", q->qid);
 		if (X_lst)
 		for (i = 0; i < X_lst->pid - Have_claim; i++)
 			printf("   .");
