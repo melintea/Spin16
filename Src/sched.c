@@ -223,7 +223,7 @@ announce(char *w)
 }
 
 #ifndef MAXP
-#define MAXP	255	/* matches max nr of processes in verifier */
+#define MAXP	MAX_SPIN_PID	/* matches max nr of processes in verifier */
 #endif
 
 int
@@ -368,17 +368,17 @@ short_cut:
 	if (fini)  alldone(1);
 }
 
-static char is_blocked[256];
+static char is_blocked[MAX_SPIN_PID+1];
 
 static int
 p_blocked(int p)
 {	int i, j;
 
-	is_blocked[p%256] = 1;
+        is_blocked[p%(MAX_SPIN_PID+1)] = 1;
 	for (i = j = 0; i < nproc - nstop; i++)
 		j += is_blocked[i];
 	if (j >= nproc - nstop)
-	{	memset(is_blocked, 0, 256);
+	{	memset(is_blocked, 0, sizeof(is_blocked));
 		return 1;
 	}
 	return 0;
@@ -429,7 +429,7 @@ if (0) printf("pid %d can run\n", X_lst->pid);
 static RunList *
 pickproc(RunList *Y)
 {	SeqList *z; Element *has_else;
-	short Choices[256];
+	short Choices[MAX_SPIN_PID+1];
 	int j, k, nr_else = 0;
 
 	if (nproc <= nstop+1)
@@ -473,8 +473,8 @@ pickproc(RunList *Y)
 
 		Tval = 0;	/* new 4.2.6 */
 try_again:	printf("Select a statement\n");
-try_more:	for (X_lst = run_lst, k = 1; X_lst; X_lst = X_lst->nxt)
-		{	if (X_lst->pid > 255) break;
+try_more:			for (X_lst = run_lst, k = 1; X_lst; X_lst = X_lst->nxt)
+		{	if (X_lst->pid > MAX_SPIN_PID) break;
 
 			Choices[X_lst->pid] = (short) k;
 
@@ -588,7 +588,7 @@ try_more:	for (X_lst = run_lst, k = 1; X_lst; X_lst = X_lst->nxt)
 		Y = NULL;
 		for (X_lst = run_lst; X_lst; Y = X_lst, X_lst = X_lst->nxt)
 		{	if (!X_lst->nxt
-			||   X_lst->nxt->pid > 255
+			||   X_lst->nxt->pid > MAX_SPIN_PID
 			||   j < Choices[X_lst->nxt->pid])
 			{
 				MadeChoice = 1+j-Choices[X_lst->pid];
@@ -728,7 +728,7 @@ sched(void)
 			oX->pc = e; LastX = X_lst;
 
 			if (!interactive) Tval = 0;
-			memset(is_blocked, 0, 256);
+			memset(is_blocked, 0, sizeof(is_blocked));
 
 			if (X_lst->pc && (X_lst->pc->status & (ATOM|L_ATOM))
 			&&  (notbeyond == 0 || oX != X_lst))
@@ -758,7 +758,7 @@ sched(void)
 				LastX = X_lst;
 				if (!interactive) Tval = 0;
 				if (nproc == nstop) break;
-				memset(is_blocked, 0, 256);
+				memset(is_blocked, 0, sizeof(is_blocked));
 				/* proc X_lst is no longer in runlist */
 				X_lst = (X_lst->nxt) ? X_lst->nxt : run_lst;
 			} else

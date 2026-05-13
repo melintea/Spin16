@@ -55,9 +55,9 @@ static const char *Head0[] = {
 	"		#undef VECTORSZ",	/* backward compatibility */
 	"	#endif",
 	"	#if WS==4",
-	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */", /* 524296 */
+	"		#define VECTORSZ	524296	/* (MAXPROC+MAXQ+4)*sizeof(void*) */",
 	"	#else",
-	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */", /* 1048592 */
+	"		#define VECTORSZ	1048592	/* (MAXPROC+MAXQ+4)*sizeof(void*) */",
 	"	#endif",
 	"#else",
 	"	#ifndef VECTORSZ",
