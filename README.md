@@ -1,4 +1,7 @@
-# Spin
+# Spi
+
+A fork of [spin](https://github.com/nimble-code/Spin) with higher process & channel limits
+
 ## An Efficient Logic Model Checker for the Verification of Multi-threaded Code
 
 Spin is an open-source software verification tool that was originally
