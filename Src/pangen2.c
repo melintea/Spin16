@@ -911,7 +911,7 @@ genconditionals(void)
 	fprintf(fd_th, "#define ALPHA_F	9\n");
 
 	fprintf(fd_tc, "int\n");
-	fprintf(fd_tc, "q_cond(short II, Trans *t)\n");
+	fprintf(fd_tc, "q_cond(int II, Trans *t)\n");
 	fprintf(fd_tc, "{	int i = 0;\n");
 	fprintf(fd_tc, "	for (i = 0; i < 6; i++)\n");
 	fprintf(fd_tc, "	{	if (t->ty[i] == TIMEOUT_F) return %s;\n",
@@ -920,7 +920,7 @@ genconditionals(void)
 	fprintf(fd_tc, "#ifdef GLOB_ALPHA\n");
 	fprintf(fd_tc, "			return 0;\n");
 	fprintf(fd_tc, "#else\n\t\t\treturn ");
-	fprintf(fd_tc, "(II+1 == (short) now._nr_pr && II+1 < MAXPROC);\n");
+	fprintf(fd_tc, "(II+1 == (int) now._nr_pr && II+1 < MAXPROC);\n");
 	fprintf(fd_tc, "#endif\n");
 
 	/* we switch on the chan name from the spec (as identified by
