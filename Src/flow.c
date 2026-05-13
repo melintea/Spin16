@@ -999,7 +999,9 @@ for_index(Lextok *a3, Lextok *a5)
 
 		sprintf(tmp_nm, "_f0r_t3mp%s", CurScope); /* make sure it's unique */
 		tmp_cnt = lookup(tmp_nm);
-		if (z0->val > 255)			/* check nr of slots, i.e. max length */
+		if (z0->val > SHRT_MAX)			/* check nr of slots, i.e. max length */
+		{	tmp_cnt->type = INT;
+		} else if (z0->val > UCHAR_MAX)
 		{	tmp_cnt->type = SHORT;	/* should be rare */
 		} else
 		{	tmp_cnt->type = BYTE;
