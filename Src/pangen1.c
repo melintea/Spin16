@@ -997,14 +997,14 @@ put_ptype(char *s, int i, int m0, int m1, enum btypes b)
 	}
 
 	fprintf(fd_th, "typedef struct P%d { /* %s */\n", i, s);
-	fprintf(fd_th, "	unsigned _pid : 8;  /* 0..255 */\n");
+	fprintf(fd_th, "	unsigned _pid : 16; /* 0.." TOSTR(MAX_SPIN_PID) " */\n");
 	fprintf(fd_th, "	unsigned _t   : %d; /* proctype */\n", blog(m1));
 	fprintf(fd_th, "	unsigned _p   : %d; /* state    */\n", blog(m0));
 	fprintf(fd_th, "#ifdef HAS_PRIORITY\n");
 	fprintf(fd_th, "	unsigned _priority : 8; /* 0..255 */\n");
 	fprintf(fd_th, "#endif\n");
 	LstSet = ZS;
-	nBits = 8 + blog(m1) + blog(m0);
+	nBits = 16 + blog(m1) + blog(m0);
 	k = dolocal(fd_tc, "", PUTV, i, s, b);	/* includes pars */
 	c_add_loc(fd_th, s);
 
@@ -1305,8 +1305,11 @@ typ2c(Symbol *sp)
 		nBits += 8*sp->nel; /* mapped onto array of uchars */
 	case MTYPE:
 	case BYTE:
-	case CHAN:	/* good for up to 255 channels */
 		fprintf(fd_th, "\tuchar %s", sp->name);
+		LstSet = sp;
+		break;
+	case CHAN:	/* good for up to MAX_SPIN_QID channels */
+		fprintf(fd_th, "\tunsigned short %s", sp->name);
 		LstSet = sp;
 		break;
 	case SHORT:
@@ -1352,9 +1355,9 @@ void
 qlen_type(int qmax)
 {
 	fprintf(fd_th, "\t");
-	if (qmax < 256)
+	if (qmax < UCHAR_MAX)
 		fprintf(fd_th, "uchar");
-	else if (qmax < 65535)
+	else if (qmax < SHRT_MAX)
 		fprintf(fd_th, "ushort");
 	else
 		fprintf(fd_th, "uint");
