@@ -171,8 +171,8 @@ inst	: /* empty */	{ $$ = ZN; }
 	| ACTIVE	{ $$ = nn(ZN,CONST,ZN,ZN); $$->val = 1; }
 	| ACTIVE '[' const_expr ']' {
 			  $$ = nn(ZN,CONST,ZN,ZN); $$->val = $3->val;
-			  if ($3->val > 255)
-				non_fatal("max nr of processes is 255\n", "");
+			  if ($3->val > MAX_SPIN_PID)
+				non_fatal("max nr of processes is " TOSTR(MAX_SPIN_PID) "\n", "");
 			}
 	| ACTIVE '[' NAME ']' {
 			  $$ = nn(ZN,CONST,ZN,ZN);
