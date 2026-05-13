@@ -55,13 +55,13 @@ static const char *Head0[] = {
 	"		#undef VECTORSZ",	/* backward compatibility */
 	"	#endif",
 	"	#if WS==4",
-	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */",
+	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */", /* 524296 */
 	"	#else",
-	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */",
+	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* (MAXPROC+MAXQ+4)*sizeof(void*) */", /* 1048592 */
 	"	#endif",
 	"#else",
 	"	#ifndef VECTORSZ",
-	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* sv size in bytes */",
+	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* sv size in bytes */", /* 1024 */
 	"	#endif",
 	"#endif\n",
 	"",
