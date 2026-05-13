@@ -28,7 +28,7 @@ static short	*M;		/* x location of each box at index y */
 static short	*T;		/* y index of match for each box at index y */
 static char	**L;		/* text labels */
 
-#define MSC_MAXPID	256             /* How many processes to display */
+#define MSC_MAXPID	512             /* How many processes to display */
 static int	ProcLine[MSC_MAXPID];	/* active processes */
 static int	UsedLine[MSC_MAXPID];	/* process line has at least one entry */
 
