@@ -9,6 +9,8 @@
 #ifndef SEEN_SPIN_H
 #define SEEN_SPIN_H
 
+#include "limits.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
