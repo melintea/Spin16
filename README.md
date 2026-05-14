@@ -1,7 +1,7 @@
 # Spin16
 
 A fork of [spin](https://github.com/nimble-code/Spin) with higher process & channel limits.
-Use the spin16 branch.
+Use the spin16 branch and see ```limits.h``` on that branch.
 
 ## An Efficient Logic Model Checker for the Verification of Multi-threaded Code
 
