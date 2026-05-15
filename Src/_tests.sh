@@ -4,18 +4,22 @@ function runit()
 {
     testf=$2
     spinf=$1
+    printf "\n\n===\n"
     echo "=== $spinf: $testf ==="
+    echo "==="
     $spinf -V
     
-    rm ./pan*
+    rm ./pan* ./*.trail ./_spin*
     
     spin -a $testf
     gcc -E pan.c -o pan.i
     gcc -o pan pan.c || exit 1
     ./pan -a -N p0
     ./pan -a -N p1
-    ./pan -a -N p2
-    ./pan -a -N p3
+    #./pan -a -N p2
+    #./pan -a -N p3
+
+    #rm ./pan* ./*.trail ./_spin*
 }
 
 spinf16=`realpath ./spin`
@@ -29,6 +33,7 @@ clear
 pushd /tmp
 
 runit /usr/bin/spin $testf8
+runit $spinf16 $testf8
 runit $spinf16 $testf16
 
 popd
