@@ -792,12 +792,12 @@ markit:			fprintf(f2, "\tIs_Recv[%d] = 1;\n", e->Seqno);
 	if (rvopt)
 	{
 	fprintf(f2, "int\nno_recvs(int me)\n{\n");
-	fprintf(f2, "	int h; uchar ot; short tt;\n");
+	fprintf(f2, "	int h; " TOSTR(SPIN_QID_T) " ot; short tt;\n");
 	fprintf(f2, "	Trans *t;\n");
 	fprintf(f2, "	for (h = BASE; h < (int) now._nr_pr; h++)\n");
 	fprintf(f2, "	{	if (h == me) continue;\n");
 	fprintf(f2, "		tt = (short) ((P0 *)pptr(h))->_p;\n");
-	fprintf(f2, "		ot = (uchar) ((P0 *)pptr(h))->_t;\n");
+	fprintf(f2, "		ot = (" TOSTR(SPIN_QID_T) ") ((P0 *)pptr(h))->_t;\n");
 	fprintf(f2, "		for (t = trans[ot][tt]; t; t = t->nxt)\n");
 	fprintf(f2, "			if (Is_Recv[t->t_id]) return 0;\n");
 	fprintf(f2, "	}\n");

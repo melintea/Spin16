@@ -13,9 +13,18 @@ function runit()
     
     $spinf -a $testf
     gcc -E pan.c -o pan.i
-    gcc -ggdb -o pan pan.c || exit 1
-    ./pan -a -N p0
-    ./pan -a -N p1
+    
+    gcc -ggdb -DMEMLIM=2048 -O2 -DXUSAFE -DSAFETY -DNOCLAIM -w -o pan pan.c || exit 1
+    ./pan -m1000000
+    
+    gcc -ggdb -DMEMLIM=2048 -O2 -DNP -DNOCLAIM -w -o pan pan.c || exit 1
+    ./pan -m1000000 -l
+    
+    gcc -ggdb -DMEMLIM=2048 -O2 -DNFAIR=4 -w -o pan pan.c || exit 1
+    ./pan -m1000000 -a -N p0
+    ./pan -m1000000 -a -f -N p0
+    ./pan -m1000000 -a -N p1
+    ./pan -m1000000 -a -f -N p1
     #./pan -a -N p2
     #./pan -a -N p3
 
