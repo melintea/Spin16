@@ -15,7 +15,7 @@
 #  if MAX_SPIN_PID > SHRT_MAX
 #    error MAX_SPIN_PID <= SHRT_MAX
 #  endif
-#  define SPIN_QID_T        int
+#  define SPIN_QID_T        short
 #  define MAX_SPIN_QID      4095 /* <= SHRT_MAX*/
 #  if MAX_SPIN_QID > SHRT_MAX
 #    error MAX_SPIN_QID <= SHRT_MAX
