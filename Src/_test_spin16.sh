@@ -13,7 +13,7 @@ function runit()
     
     $spinf -a $testf
     gcc -E pan.c -o pan.i
-    gcc -o pan pan.c || exit 1
+    gcc -ggdb -o pan pan.c || exit 1
     ./pan -a -N p0
     ./pan -a -N p1
     #./pan -a -N p2
