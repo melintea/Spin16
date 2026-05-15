@@ -11,7 +11,7 @@ function runit()
     
     rm ./pan* ./*.trail ./_spin*
     
-    spin -a $testf
+    $spinf -a $testf
     gcc -E pan.c -o pan.i
     gcc -o pan pan.c || exit 1
     ./pan -a -N p0
