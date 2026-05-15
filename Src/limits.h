@@ -11,9 +11,9 @@
 
 #ifdef SPIN16
 #  define SPIN_PID_T        ushort
-#  define MAX_SPIN_PID      4095 /*SHRT_MAX*/
+#  define MAX_SPIN_PID      4095 /* <= SHRT_MAX*/
 #  define SPIN_QID_T        int
-#  define MAX_SPIN_QID      4095 /*SHRT_MAX*/
+#  define MAX_SPIN_QID      4095 /* <= SHRT_MAX*/
 #  define SPIN_MSGID_T      ushort
 #  define MAX_SPIN_MSGID    SHRT_MAX
 #  define MAXQ        MAX_SPIN_QID
