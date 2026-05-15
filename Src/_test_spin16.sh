@@ -22,6 +22,8 @@ function runit()
     #rm ./pan* ./*.trail ./_spin*
 }
 
+
+make
 spinf16=`realpath ./spin`
 
 #testf=`realpath ../Examples/LTL/leader.pml`
