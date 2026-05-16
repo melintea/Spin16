@@ -37,12 +37,13 @@ spinf16=`realpath ./spin`
 
 #testf=`realpath ../Examples/LTL/leader.pml`
 #testf=`realpath ../Examples/LTL/_manyprocs.pml`
-testf8=`realpath ../Examples/LTL/spin8.pml`
-testf16=`realpath ../Examples/LTL/spin16.pml`
+testf8=`realpath ../Examples/LTL/spin16-8.pml`
+testf16=`realpath ../Examples/LTL/spin16-16.pml`
 
 clear
 pushd /tmp
 
+#runit ~/work/Spin/Src/spin $testf8
 runit /usr/bin/spin $testf8
 runit $spinf16 $testf8
 runit $spinf16 $testf16
