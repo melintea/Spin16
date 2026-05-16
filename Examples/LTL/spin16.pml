@@ -1,12 +1,15 @@
 /* Leader with large numbers of processes/channels/messages */
 
-short leader = 0; // note the PID type: short
-#define N 300       
+#define N 300
+
+short leader    = 0; // flag
+short leader_id = 0; // note the PID type: short
 
 proctype node(chan in; chan out; short id) {
     short rec;
     out ! id; 
     
+end_node: 
     do
     :: in ? rec ->
         if
@@ -14,8 +17,12 @@ proctype node(chan in; chan out; short id) {
         :: rec < id -> skip       
         :: rec == id ->           
             printf("Node %d is leader\n", id);
-            leader = leader + 1;
-            break
+            atomic { 
+                leader = leader + 1; 
+                leader_id = id; 
+                assert(leader <=1);
+            }
+            //break
         fi
     od
 }
@@ -43,5 +50,5 @@ init {
 ltl p0 /*safety_one_leader*/ { [] (leader <= 1) }
 
 /* 2. Liveness: Eventually, a leader is elected and stays elected */
-ltl p1 /*liveness_election*/ { <> [] (leader == 1) }
+ltl p1 /*liveness_election*/ { <> [] ((leader == 1) && (leader_id == N-1)) }
 
