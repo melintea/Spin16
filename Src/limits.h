@@ -25,7 +25,7 @@
 #  define MAXQ        MAX_SPIN_QID
 #  define MAXPROC     MAX_SPIN_PID
 /* VECTORSZ in disguise */
-#  define XVECTORSZ   2048592 /* > (MAXPROC+MAXQ+4)*sizeof(void*) on 64 bits */
+#  define XVECTORSZ   134217728 /* > (MAXPROC+MAXQ+4)*sizeof(void*) on 64 bits */
 #else
 #  define SPIN_PID_T        uchar
 #  define MAX_SPIN_PID      UCHAR_MAX
@@ -36,6 +36,8 @@
 #  define MAXQ        MAX_SPIN_QID
 #  define MAXPROC     MAX_SPIN_PID
 #endif /* SPIN16 */
+
+#define SPINBUFSZ 512
 
 #define STROP(x)  #x
 #define TOSTR(x)  STROP(x)
