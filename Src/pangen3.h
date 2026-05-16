@@ -64,8 +64,6 @@ static const char *Head0[] = {
 	"		#define VECTORSZ	" TOSTR(XVECTORSZ) " /* sv size in bytes */", /* 1024 */
 	"	#endif",
 	"#endif\n",
-	"#define MAXQ   	65535", //
-	"#define MAXPROC	65535", //
 	"",
 	0,
 };
