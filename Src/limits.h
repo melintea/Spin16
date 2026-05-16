@@ -26,8 +26,8 @@
 #  define MAXPROC     MAX_SPIN_PID
 /* VECTORSZ in disguise, value must be in clear */
 #  define XVECTORSZ    1048592  /* > (MAXPROC+MAXQ+4)*sizeof(void*) on 64 bits */
-#  if XVECTORSZ < (MAXPROC+MAXQ+4)*sizeof(void*)
-#    error XVECTORSZ too small
+#  if XVECTORSZ < (MAXPROC+MAXQ+4)*8
+#    error XVECTORSZ < (MAXPROC+MAXQ+4)*sizeof(void*)
 #  endif
 #else
 #  define SPIN_PID_T        uchar
