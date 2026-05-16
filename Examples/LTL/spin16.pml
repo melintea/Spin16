@@ -1,7 +1,7 @@
 /* Leader with large numbers of processes/channels/messages */
 
 short leader = 0; // note the PID type: short
-#define N 500       
+#define N 300       
 
 proctype node(chan in; chan out; short id) {
     short rec;

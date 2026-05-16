@@ -20,7 +20,7 @@ function runit()
     gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DNP -DNOCLAIM -w -o pan pan.c || exit 1
     ./pan -m1000000 -l
     
-    gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DNFAIR=10 -w -o pan pan.c || exit 1
+    gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DNFAIR=100 -w -o pan pan.c || exit 1
     ./pan -m1000000 -a -N p0
     ./pan -m1000000 -a -f -N p0
     ./pan -m1000000 -a -N p1
