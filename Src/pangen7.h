@@ -892,7 +892,7 @@ static const char *pan_par[] = {	/* generates pan.p */
 	"		_this = pptr(II);",
 	"		tt = (int) ((P0 *)_this)->_p;",
 	"		ot = (" TOSTR(SPIN_QID_T) ") ((P0 *)_this)->_t;",
-	"		ntrpt->pr = (uchar) II;",
+	"		ntrpt->pr = (ushort) II;",
 	"		ntrpt->st = tt;	",
 	"		trpt->o_pm &= ~1; /* no move yet */",
 	"#ifdef EVENT_TRACE",

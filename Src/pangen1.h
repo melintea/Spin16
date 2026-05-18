@@ -1632,7 +1632,7 @@ static const char *Code2a[] = { /* the tail of procedure run() */
 	"			{	continue;",
 	"			}",
 	"	#endif",
-	"			ntrpt->pr = (uchar) II;",
+	"			ntrpt->pr = (ushort) II;",
 	"			ntrpt->st = tt;	",
 	"			trpt->o_pm &= ~1; /* no move yet */",
 	"	#ifdef EVENT_TRACE",
@@ -3352,7 +3352,7 @@ static const char *Code2d[] = {
 	"#ifdef HAS_UNLESS",
 	"		trpt->e_state = 0;",
 	"#endif",
-	"		(trpt+1)->pr = (uchar) II;",	/* for uerror */
+	"		(trpt+1)->pr = (ushort) II;",	/* for uerror */
 	"		(trpt+1)->st = tt;",
 
 	"#ifdef T_RAND",
@@ -3488,7 +3488,7 @@ static const char *Code2d[] = {
 	"#endif",
 
 	"			depth++; trpt++;",
-	"			trpt->pr = (uchar) II;",
+	"			trpt->pr = (ushort) II;",
 	"			trpt->st = tt;",
 	"			trpt->o_pm &= ~(2|4);",
 	"			if (t->st > 0)",

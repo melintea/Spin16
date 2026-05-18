@@ -1,4 +1,5 @@
 /* Leader with large numbers of processes/channels/messages */
+/* gcc -ggdb -DMEMLIM=8192 -DBITSTATE ... */
 
 #define N 300
 

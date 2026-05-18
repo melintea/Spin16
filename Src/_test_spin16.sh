@@ -14,17 +14,18 @@ function runit()
     $spinf -a $testf
     gcc -E pan.c -o pan.i
     
-    gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DXUSAFE -DSAFETY -DNOCLAIM -w -o pan pan.c || exit 1
-    ./pan -m1000000
+    #                       -DCOLLAPSE 
+    gcc -ggdb -DMEMLIM=4096 -DBITSTATE -O2 -DXUSAFE -DSAFETY -DNOCLAIM -w -o pan pan.c || exit 1
+    ./pan -m1000001
     
-    gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DNP -DNOCLAIM -w -o pan pan.c || exit 1
-    ./pan -m1000000 -l
+    gcc -ggdb -DMEMLIM=8192 -DBITSTATE -O2 -DNP -DNOCLAIM -w -o pan pan.c || exit 1
+    ./pan -m1000001 -l
     
-    gcc -ggdb -DMEMLIM=4096 -DCOLLAPSE -O2 -DNFAIR=100 -w -o pan pan.c || exit 1
-    ./pan -m1000000 -a -N p0
-    ./pan -m1000000 -a -f -N p0
-    ./pan -m1000000 -a -N p1
-    ./pan -m1000000 -a -f -N p1
+    gcc -ggdb -DMEMLIM=8192 -DBITSTATE -O2 -DNFAIR=100 -w -o pan pan.c || exit 1
+    ./pan -m1000001 -a -N p0
+    ./pan -m1000001 -a -f -N p0
+    ./pan -m1000001 -a -N p1
+    ./pan -m1000001 -a -f -N p1
     #./pan -a -N p2
     #./pan -a -N p3
 
@@ -35,8 +36,6 @@ function runit()
 make
 spinf16=`realpath ./spin`
 
-#testf=`realpath ../Examples/LTL/leader.pml`
-#testf=`realpath ../Examples/LTL/_manyprocs.pml`
 testf8=`realpath ../Examples/LTL/spin16-8.pml`
 testf16=`realpath ../Examples/LTL/spin16-16.pml`
 
