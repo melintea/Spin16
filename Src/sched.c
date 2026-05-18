@@ -223,7 +223,7 @@ announce(char *w)
 }
 
 #ifndef MAXP
-#define MAXP	MAX_SPIN_PID	/* matches max nr of processes in verifier */
+#define MAXP	MAX_SPIN_PID	/* was 255; matches max nr of processes in verifier */
 #endif
 
 int
@@ -473,7 +473,7 @@ pickproc(RunList *Y)
 
 		Tval = 0;	/* new 4.2.6 */
 try_again:	printf("Select a statement\n");
-try_more:			for (X_lst = run_lst, k = 1; X_lst; X_lst = X_lst->nxt)
+try_more:	for (X_lst = run_lst, k = 1; X_lst; X_lst = X_lst->nxt)
 		{	if (X_lst->pid > MAX_SPIN_PID) break;
 
 			Choices[X_lst->pid] = (short) k;

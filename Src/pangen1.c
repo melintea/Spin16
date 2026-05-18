@@ -1309,7 +1309,7 @@ typ2c(Symbol *sp)
 		LstSet = sp;
 		break;
 	case CHAN:	/* good for up to MAX_SPIN_QID channels */
-		fprintf(fd_th, "\t" TOSTR(SPIN_QID_T) " %s", sp->name);
+		fprintf(fd_th, "\tshort %s", sp->name);
 		LstSet = sp;
 		break;
 	case SHORT:
@@ -1390,7 +1390,7 @@ genaddqueue(void)
 
 		fprintf(fd_th, "typedef struct Q%d {\n", j);
 		qlen_type(qmax);	/* 4.2.2 */
-		fprintf(fd_th, "	" TOSTR(SPIN_QID_T) " _t;	/* q_type */\n");
+		fprintf(fd_th, "	ushort _t;	/* q_type */\n");
 		fprintf(fd_th, "	struct {\n");
 
 		for (j = 0; j < q->nflds; j++)
@@ -1422,7 +1422,7 @@ genaddqueue(void)
 
 	fprintf(fd_th, "typedef struct Q0 {\t/* generic q */\n");
 	qlen_type(qmax);	/* 4.2.2 */
-	fprintf(fd_th, "	" TOSTR(SPIN_QID_T) " _t;\n");
+	fprintf(fd_th, "	ushort _t;\n");
 	fprintf(fd_th, "} Q0;\n");
 
 	ntimes(fd_tc, 0, 1, Addq1);

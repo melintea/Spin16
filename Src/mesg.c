@@ -12,7 +12,7 @@
 #include "y.tab.h"
 
 #ifndef MAXQ
-#define MAXQ	MAX_SPIN_QID		/* default max # queues  */
+#define MAXQ	MAX_SPIN_QID		/* default max # queues; was 2500  */
 #endif
 
 extern RunList	*X_lst;
@@ -74,7 +74,7 @@ qmake(Symbol *s)
 		return eval(s->ini);
 
 	q = (Queue *) emalloc(sizeof(Queue));
-	q->qid    = (SPIN_QID_T) ++nrqs;
+	q->qid    = (short) ++nrqs;
 	q->nslots = s->ini->val;
 	q->nflds  = cnt_mpars(s->ini->rgt);
 	q->setat  = depth;

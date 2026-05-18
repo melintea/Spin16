@@ -10,7 +10,7 @@
 #include <limits.h>
 
 /*
- * Process/queue IDs were uchar, are now ushort
+ * Process/queue IDs were uchar, are now short types
  */
 #ifdef SPIN16
 #  define MAX_SPIN_PID      4095 /* <= SHRT_MAX*/
@@ -33,7 +33,7 @@
 #  define MAX_SPIN_PID      UCHAR_MAX
 #  define MAX_SPIN_QID      UCHAR_MAX
 #  define MAX_SPIN_MSGID    UCHAR_MAX
-#  define MAXQ        MAX_SPIN_QID
+#  define MAXQ        2500
 #  define MAXPROC     MAX_SPIN_PID
 #endif /* SPIN16 */
 
