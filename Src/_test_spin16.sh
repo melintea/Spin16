@@ -14,8 +14,8 @@ function runit()
     spinf=$1
     printf "\n\n\n===\n"
     echo "=== $spinf: $testf ==="
+    echo "=== `$spinf -V` ==="
     printf "===\n\n"
-    $spinf -V
     
     rm ./pan* ./*.trail ./_spin*
     
