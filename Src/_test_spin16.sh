@@ -22,7 +22,7 @@ function runit()
     $spinf -a $testf || exit 1
     gcc -E pan.c -o pan.i
     
-    #                       -DCOLLAPSE 
+    #                               -DCOLLAPSE 
     runcmd "gcc -ggdb -DMEMLIM=4096 -DBITSTATE -O2 -DXUSAFE -DSAFETY -DNOCLAIM -w -o pan pan.c" || exit 
     runcmd "./pan -m1000001"
     
