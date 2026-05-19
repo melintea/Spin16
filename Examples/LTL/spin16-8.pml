@@ -50,5 +50,5 @@ init {
 ltl p0 /*safety_one_leader*/ { [] (elected <= 1) }
 
 /* 2. Liveness: Eventually, a leader is elected and stays elected */
-ltl p1 /*liveness_election*/ { <> [] ((elected == 1) && (elected == N-1)) }
+ltl p1 /*liveness_election*/ { <> [] ((elected == 1) && (leader == N-1)) }
 
