@@ -6,7 +6,7 @@ byte elected    = 0;
 byte leader     = 0;
 
 proctype node(chan in; chan out; byte id) {
-    short rec;
+    byte rec;
     out ! id; 
     
 end_node: 
