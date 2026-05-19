@@ -12,7 +12,7 @@
 #include "y.tab.h"
 
 #ifndef MAXQ
-#define MAXQ	MAX_SPIN_QID		/* default max # queues; was 2500  */
+#  error MAXQ not defined, include limit.h		/* default max # queues; was 2500  */
 #endif
 
 extern RunList	*X_lst;
